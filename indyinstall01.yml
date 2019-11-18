@@ -1,0 +1,16 @@
+---
+- name: Playbook to install Python on Indy VM
+  hosts: raiders
+  gather_facts: no  # do not gather_facts as indy may not have python installed
+  tasks: 
+          - name: ensure python is installed
+            raw: "apt install python3 -y"
+            become: yes
+
+          - name: create a new usergroup on Indy
+            group:
+                    name: sandbox ### this is the name of the group we want to create
+                    state: present ### we want this group (sandbox) to exist
+            become: yes
+
+          
